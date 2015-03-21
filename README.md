@@ -1,2 +1,2 @@
-# UpDownMethods
-Python module for up down methods
+# Up Down Methods
+Python module for up down methods in psychoacoustics
