@@ -1,4 +1,2 @@
-
-
 CORRECT = True
 INCORRECT = False
