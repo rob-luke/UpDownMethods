@@ -10,6 +10,6 @@ install:
 before_script:
   - export PYTHONPATH="$PYTHONPATH:/home/travis/build/codles/UpDownMethods"
 script:
-  - coverage run -m unittest discover -s tests -v
+  - coverage run --source=UpDownMethods -m unittest discover -s tests -v
 after_success:
   - coveralls
