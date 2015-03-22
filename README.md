@@ -20,10 +20,12 @@ Framework for generating psychoacoustic stimuli parameters based on [Levitt 1970
 
 #### Results and visualisation
 
+* `estimate_reversals` returns an estimate of the value based on last `num` of reversals
 * `process_results` calculates procedure values and results
 * `midpoints` returns the midpoints for each run
 * `runs` returns the start and finish point of each run in results
 * `plot_results` plots the procedure results in the same format as the original Levitt paper
+* `reversals` return the location and value of reversals
 
 
 
