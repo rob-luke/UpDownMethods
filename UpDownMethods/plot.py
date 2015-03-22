@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import UpDownMethods as ud
 
 
 def plot_results(results):
@@ -32,6 +33,11 @@ def plot_results(results):
 
         plt.errorbar(mid, runY, xerr=(end-start)/2, c='k')
         plt.annotate(str(int(run)), xy=(mid, runY-0.5), xytext=(mid, runY-0.5))
+
+    mids = ud.midpoints(results)
+    for i in range(len(mids)):
+        plt.scatter(mids['CentreTrial'].values[i],
+                    mids['Midpoint'].values[i], c='r')
 
     plt.xlim(-0.5, max(results.index) + 2.5)
     plt.ylabel('Stimulus Value', fontsize=14)
