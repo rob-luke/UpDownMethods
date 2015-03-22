@@ -120,5 +120,16 @@ def runs(res):
     return runs
 
 
+def reversals(res):
+
+    res = res[res.Reversal]
+    reversal = res['Run']
+    reversal = reversal - 0.5
+
+    return pd.DataFrame({'Reversal': reversal,
+                         'Value': res['Value'],
+                         'Trial': res['Trial']})
+
+
 def createDT():
     return dt.datetime.strftime(dt.datetime.now(),  '%y-%m-%dT%H:%M:%S')

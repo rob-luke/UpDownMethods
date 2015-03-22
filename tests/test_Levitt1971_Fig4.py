@@ -48,6 +48,15 @@ class TestSequenceFunctions(unittest.TestCase):
         ud.plot_results(self.results)
         plt.savefig('doc/images/Levitt-Fig4.png', bbox_inches='tight')
 
+    def test_reversals(self):
+        revs = ud.reversals(self.results)
+        self.assertIsNone(np.testing.assert_array_equal(
+           revs["Reversal"].values, [1, 2, 3, 4, 5, 6, 7]))
+        self.assertIsNone(np.testing.assert_array_equal(
+           revs["Trial"].values, [3, 7, 9, 12, 17, 20, 22]))
+        self.assertIsNone(np.testing.assert_array_equal(
+           revs["Value"].values, [-2, 2, 0, 3, -2, 1, -1]))
+
     def test_runs(self):
         runs = ud.runs(self.results)
         self.assertIsNone(np.testing.assert_array_equal(
