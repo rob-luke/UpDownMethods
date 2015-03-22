@@ -131,5 +131,13 @@ def reversals(res):
                          'Trial': res['Trial']})
 
 
+def estimate_reversals(res, num=2):
+    rev = reversals(res)
+    rev = rev['Value'].values
+    num = num * -1
+    rev = rev[num:]
+    return np.mean(rev)
+
+
 def createDT():
     return dt.datetime.strftime(dt.datetime.now(),  '%y-%m-%dT%H:%M:%S')

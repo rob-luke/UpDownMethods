@@ -57,6 +57,12 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertIsNone(np.testing.assert_array_equal(
            revs["Value"].values, [-2, 2, 0, 3]))
 
+    def test_estimate_reversals(self):
+        est = ud.estimate_reversals(self.results)
+        self.assertEqual(est, 1.5)
+        est = ud.estimate_reversals(self.results, num=4)
+        self.assertEqual(est, 3/4.)
+
     def test_runs(self):
         runs = ud.runs(self.results)
         self.assertIsNone(np.testing.assert_array_equal(
