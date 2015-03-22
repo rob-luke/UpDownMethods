@@ -7,7 +7,6 @@ import unittest
 
 #
 # Simulation parameters
-#
 
 responses = [CORRECT, CORRECT, INCORRECT, INCORRECT, INCORRECT, INCORRECT,
              CORRECT, CORRECT, INCORRECT, INCORRECT, INCORRECT, CORRECT,
@@ -22,7 +21,6 @@ up = 1
 
 #
 # Test code
-#
 
 class TestSequenceFunctions(unittest.TestCase):
 
@@ -59,6 +57,5 @@ class TestSequenceFunctions(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    # unittest.main()
     suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
     unittest.TextTestRunner(verbosity=2).run(suite)
