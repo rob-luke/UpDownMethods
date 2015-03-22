@@ -1,9 +1,10 @@
 language: python
 python:
   - "2.7"
-# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install pandas numpy matplotlib
-# command to run tests, e.g. python setup.py test
+install:
+  - pip install pandas numpy matplotlib
+before_script:
+  - export PYTHONPATH="$PYTHONPATH:/home/travis/build/codles/UpDownMethods/"
 script:  
   - pwd
   - ls -al
