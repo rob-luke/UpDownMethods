@@ -63,6 +63,8 @@ for resp in responses[1:]:
 #
 # Process results
 
+print "Value estimate = " + str(ud.estimate_reversals(self.results, num=2))
+
 ud.plot_results(self.results)
 plt.savefig(‘test.png’, bbox_inches=‘tight’)
 ```
