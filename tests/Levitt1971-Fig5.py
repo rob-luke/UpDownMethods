@@ -1,8 +1,6 @@
 from UpDownMethods import CORRECT, INCORRECT
 import UpDownMethods as ud
 import numpy as np
-import matplotlib as mpl     # This is just so it works on 
-mpl.use('Agg')               # travis-ci.org
 import matplotlib.pyplot as plt
 import unittest
 
