@@ -23,22 +23,6 @@ Framework for generating psychoacoustic stimuli parameters based on [Levitt 1970
 * `runs` returns the start and finish point of each run in results
 * `plot_results` plots the procedure results in the same format as the original Levitt paper
 
-### Parameters
-
-#### Stimulation
-
-* Up: Number of incorrect responses to go one step up
-* Down: Number of correct responses to go one step down
-* InitialValue: The level used on the very first run
-* InitialStepSize: The increments by which the stimulus is either increased or decreased. The step size is halved after the first, third, seventh, fifteenth runs
-* MaxTrials: The maximum number of trials before the procedure exits
-* MaxReversals: The maximum number of reversals before the procedure exits. 
-* MaxStimValue: The maximum value the parameter may take
-* MinStimValue: The minimum value the parameter may take
-
-
-#### Results and visualisation
-* IgnoreReversals: The number of reversals to ignore when calculating the parameter	estimation
 
 
 ## Example
