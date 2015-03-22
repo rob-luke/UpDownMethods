@@ -8,8 +8,5 @@ install:
   - pip install pandas numpy matplotlib
 before_script:
   - export PYTHONPATH="$PYTHONPATH:/home/travis/build/codles/UpDownMethods"
-script:  
-  - print $PYTHONPATH
-  - pwd
-  - ls -al
+script:
   - python tests/Levitt1971-Fig5.py
