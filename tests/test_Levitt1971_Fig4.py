@@ -44,11 +44,11 @@ class TestSequenceFunctions(unittest.TestCase):
         mids = ud.midpoints(self.results)
         mids = mids["Midpoint"]
         mids = mids[[1, 3, 5]].values   # Runs 2, 4, 6
-        self.assertIsNone(np.testing.assert_array_equal(mids, [0.0, 1.5, -0.5]))
+        self.assertIsNone(np.testing.assert_array_equal(mids, [0., 1.5, -0.5]))
 
     def test_plotResults(self):
         ud.plot_results(self.results)
-        plt.savefig('test-fig4.png', bbox_inches='tight')
+        plt.savefig('doc/images/Levitt-Fig4.png', bbox_inches='tight')
 
     def test_runs(self):
         runs = ud.runs(self.results)

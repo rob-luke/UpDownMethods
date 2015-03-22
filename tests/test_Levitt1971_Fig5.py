@@ -48,7 +48,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_plotResults(self):
         ud.plot_results(self.results)
-        plt.savefig('test.png', bbox_inches='tight')
+        plt.savefig('doc/images/Levitt-Fig5.png', bbox_inches='tight')
 
     def test_runs(self):
         runs = ud.runs(self.results)

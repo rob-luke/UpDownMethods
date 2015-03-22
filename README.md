@@ -35,38 +35,34 @@ import UpDownMethods as ud
 
 #
 # Simulation parameters
-#
 
 responses = [CORRECT, CORRECT, CORRECT, CORRECT, INCORRECT, CORRECT, INCORRECT,
              INCORRECT, CORRECT, INCORRECT, CORRECT, CORRECT, CORRECT, CORRECT,
              CORRECT, INCORRECT, INCORRECT, INCORRECT, CORRECT, CORRECT,
              CORRECT, CORRECT, CORRECT, CORRECT]
 
-initalValue = 0.0
-stepSize = 1.0
+initalValue = 0
+stepSize = 1
 down = 2
 up = 1
 
 
 #
 # Experiment
-#
 
 results = ud.initiate_results()
 
 nextValue, self.results = ud.append_result(results, responses[0], down, up, stepSize, initalValue)
-                                   
+
 for resp in responses[1:]:
     nextValue, results = ud.append_result(results, resp, down, up, stepSize, nextValue)
- 
+
 
 #
 # Process results
-#
-    
+
 ud.plot_results(self.results)
 plt.savefig(‘test.png’, bbox_inches=‘tight’)
-
 ```
 
-![Levitt Example](doc/images/Levitt-Fig4.png)
+![Levitt Example](doc/images/Levitt-Fig5.png)
