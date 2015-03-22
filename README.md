@@ -1,5 +1,6 @@
 # Up Down Methods
-[![Build Status](https://travis-ci.org/codles/UpDownMethods.svg?branch=master)](https://travis-ci.org/codles/UpDownMethods)  
+[![Build Status](https://travis-ci.org/codles/UpDownMethods.svg?branch=master)](https://travis-ci.org/codles/UpDownMethods) 
+[![Coverage Status](https://coveralls.io/repos/codles/UpDownMethods/badge.svg)](https://coveralls.io/r/codles/UpDownMethods)  
 Python module implementing the transformed Up-Down procedure
 
 
