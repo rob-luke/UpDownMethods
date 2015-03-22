@@ -87,14 +87,18 @@ def process_results(res, down, up, stepSize):
 
 
 def midpoints(res):
-    runs = pd.DataFrame(columns=('Run', 'Midpoint'))
+    runs = pd.DataFrame(columns=('Run', 'Midpoint', 'CentreTrial'))
 
     i = 0
     for run in np.unique(np.round(res['Run'])):
         run_n = res[abs(res['Run'] - run) <= 0.5]
         values = np.unique(run_n["Value"])
 
-        runs.loc[i] = [int(run), np.mean(values)]
+        start = min(run_n["Trial"])
+        end = max(run_n["Trial"])
+        mid = start + (end-start)/2
+
+        runs.loc[i] = [int(run), np.mean(values), mid]
         i += 1
 
     return runs
