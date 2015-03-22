@@ -31,43 +31,53 @@ def process_results(res, down, up, stepSize):
 
     for t in res.index:
 
-        res.loc[t, 'Run'] = run
-        res.loc[t, 'Direction'] = direction
+        if t == len(res)-1:                         # If most recent response
+            res.loc[t, 'Run'] = run                 # then fill values
+            res.loc[t, 'Direction'] = direction
 
+        # Default action is no change in value
         nextValue = res.loc[t, 'Value']
 
-        if res["Responses"][t]:         # Correct
-            cntD += 1
-            cntU = 0
-            if cntD == down:
-                cntD = 0
-                if direction != -1:
+        if res["Responses"][t]:         # Correct response given
+            cntD += 1                   # Increment the counter for down
+            cntU = 0                    # Reset the up counter
+            if cntD == down:            # The correct number of down responses
+                cntD = 0                # Reset the counter
+                if direction != -1:     # We found a reversal
                     if direction != 0:  # The first movement is not a reversal
-                        res.loc[t, 'Reversal'] = True
 
-                        # Runs are calculated from first to last in a level
-                        # and trials can be counted in multiple runs
-                        n = 0
-                        while res.loc[t-n, 'Value'] == res.loc[t, 'Value']:
-                            res.loc[t-n, 'Run'] += 0.5
-                            n += 1
+                        # Only edit values from most recent response
+                        # This is necessary when having different step sizes
+                        # or reversal conditions
+                        if t == len(res)-1:
+                            res.loc[t, 'Reversal'] = True
+
+                            # Runs are calculated from first to last in a level
+                            # and trials can be counted in multiple runs
+                            n = 0
+                            while res.loc[t-n, 'Value'] == res.loc[t, 'Value']:
+                                res.loc[t-n, 'Run'] += 0.5
+                                n += 1
+
                         run += 1
                     direction = -1
                 nextValue = res.loc[t, 'Value'] + direction * stepSize
 
-        else:                                   # Incorrect
+        else:                           # Incorrect response given
             cntU += 1
             cntD = 0
             if cntU == up:
                 cntU = 0
                 if direction != 1:
                     if direction != 0:
-                        res.loc[t, 'Reversal'] = True
 
-                        n = 0
-                        while res.loc[t-n, 'Value'] == res.loc[t, 'Value']:
-                            res.loc[t-n, 'Run'] += 0.5
-                            n += 1
+                        if t == len(res)-1:
+                            res.loc[t, 'Reversal'] = True
+
+                            n = 0
+                            while res.loc[t-n, 'Value'] == res.loc[t, 'Value']:
+                                res.loc[t-n, 'Run'] += 0.5
+                                n += 1
 
                         run += 1
                     direction = 1
