@@ -5,7 +5,7 @@ Python module implementing the transformed Up-Down procedure
 
 
 ## Description
-Framework for generating psychoacoustic stimuli parameters based on [Levitt 1970](http://www.ncbi.nlm.nih.gov/pubmed/5541744).
+Framework for generating psychoacoustic stimuli parameters based on [Levitt 1971](http://www.ncbi.nlm.nih.gov/pubmed/5541744).
 
 
 ## Implementation
