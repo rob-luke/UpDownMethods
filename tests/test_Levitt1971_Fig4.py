@@ -45,7 +45,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertIsNone(np.testing.assert_array_equal(mids, [0., 1.5, -0.5]))
 
     def test_plotResults(self):
-        ud.plot_results(self.results)
+        ud.plot_results(self.results, midpoints=True)
         plt.savefig('doc/images/Levitt-Fig4.png', bbox_inches='tight')
 
     def test_reversals(self):
