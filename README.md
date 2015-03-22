@@ -41,11 +41,8 @@ responses = [CORRECT, CORRECT, CORRECT, CORRECT, INCORRECT, CORRECT, INCORRECT,
              CORRECT, CORRECT, CORRECT, CORRECT]
 
 initalValue = 0.0
-
 stepSize = 1.0
-
 down = 2
-
 up = 1
 
 
