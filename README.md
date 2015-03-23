@@ -31,6 +31,8 @@ Framework for generating psychoacoustic stimuli parameters based on [Levitt 1971
 
 ## Example
 
+Recreate figure 5 from Levitt 1971.
+
 ```python
 
 import UpDownMethods as ud
