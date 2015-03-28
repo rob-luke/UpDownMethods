@@ -87,56 +87,79 @@ def process_results(res, down, up, stepSize):
 
 
 def midpoints(res):
-    runs = pd.DataFrame(columns=('Run', 'Midpoint', 'CentreTrial'))
 
-    i = 0
-    for run in np.unique(np.round(res['Run'])):
-        run_n = res[abs(res['Run'] - run) <= 0.5]
-        values = np.unique(run_n["Value"])
+    if res.empty:
+        return None
 
-        start = min(run_n["Trial"])
-        end = max(run_n["Trial"])
-        mid = start + (end-start)/2
+    else:
 
-        runs.loc[i] = [int(run), np.mean(values), mid]
-        i += 1
+        runs = pd.DataFrame(columns=('Run', 'Midpoint', 'CentreTrial'))
 
-    return runs
+        i = 0
+        for run in np.unique(np.round(res['Run'])):
+            run_n = res[abs(res['Run'] - run) <= 0.5]
+            values = np.unique(run_n["Value"])
+
+            start = min(run_n["Trial"])
+            end = max(run_n["Trial"])
+            mid = start + (end-start)/2
+
+            runs.loc[i] = [int(run), np.mean(values), mid]
+            i += 1
+
+        return runs
 
 
 def runs(res):
-    runs = pd.DataFrame(columns=('Run', 'Start', 'Finish'))
 
-    i = 0
-    for run in np.unique(np.round(res['Run'])):
+    if res.empty:
+        return None
 
-        run_n = res[abs(res['Run'] - run) <= 0.5]
-        start = min(run_n["Trial"])
-        end = max(run_n["Trial"])
+    else:
 
-        runs.loc[i] = [int(run), start, end]
-        i += 1
+        runs = pd.DataFrame(columns=('Run', 'Start', 'Finish'))
 
-    return runs
+        i = 0
+        for run in np.unique(np.round(res['Run'])):
+
+            run_n = res[abs(res['Run'] - run) <= 0.5]
+            start = min(run_n["Trial"])
+            end = max(run_n["Trial"])
+
+            runs.loc[i] = [int(run), start, end]
+            i += 1
+
+        return runs
 
 
 def reversals(res):
 
-    res = res[res.Reversal]
-    reversal = res['Run']
-    reversal = reversal - 0.5
+    if res.empty:
+        return None
 
-    return pd.DataFrame({'Reversal': reversal,
-                         'Value': res['Value'],
-                         'Trial': res['Trial']})
+    else:
+
+        res = res[res.Reversal]
+        reversal = res['Run']
+        reversal = reversal - 0.5
+
+        return pd.DataFrame({'Reversal': reversal,
+                             'Value': res['Value'],
+                             'Trial': res['Trial']})
 
 
 def estimate_reversals(res, num=2):
-    rev = reversals(res)
-    rev = rev['Value'].values
-    num = num * -1
-    rev = rev[num:]
-    return np.mean(rev)
+
+    if res.empty:
+        return None
+
+    else:
+
+        rev = reversals(res)
+        rev = rev['Value'].values
+        num = num * -1
+        rev = rev[num:]
+        return np.mean(rev)
 
 
 def createDT():
