@@ -34,41 +34,30 @@ Framework for generating psychoacoustic stimuli parameters based on [Levitt 1971
 Recreate figure 5 from Levitt 1971.
 
 ```python
+# Figure 4 Levitt 1971
+resp1 = [CORRECT, CORRECT, INCORRECT, INCORRECT, INCORRECT, INCORRECT,
+         CORRECT, CORRECT, INCORRECT, INCORRECT, INCORRECT, CORRECT,
+         CORRECT, CORRECT, CORRECT, CORRECT, INCORRECT, INCORRECT,
+         INCORRECT, CORRECT, CORRECT, INCORRECT, INCORRECT, INCORRECT]
 
-import UpDownMethods as ud
+# Figure 5 Levitt 1971
+resp2 = [CORRECT, CORRECT, CORRECT, CORRECT, INCORRECT, CORRECT, INCORRECT,
+         INCORRECT, CORRECT, INCORRECT, CORRECT, CORRECT, CORRECT, CORRECT,
+         CORRECT, INCORRECT, INCORRECT, INCORRECT, CORRECT, CORRECT,
+         CORRECT, CORRECT, CORRECT, CORRECT]
 
-#
-# Simulation parameters
+stim1 = ud.UpDownMethod(down=1, up=1, stepSize=1, initialValue=0)
+stim2 = ud.UpDownMethod(down=2, up=1, stepSize=1, initialValue=0)
 
-responses = [CORRECT, CORRECT, CORRECT, CORRECT, INCORRECT, CORRECT, INCORRECT,
-             INCORRECT, CORRECT, INCORRECT, CORRECT, CORRECT, CORRECT, CORRECT,
-             CORRECT, INCORRECT, INCORRECT, INCORRECT, CORRECT, CORRECT,
-             CORRECT, CORRECT, CORRECT, CORRECT]
+for resp in resp1:
+    stim1(resp)
 
-initalValue = 0
-stepSize = 1
-down = 2
-up = 1
+for resp in resp2:
+    stim2(resp)
 
-
-#
-# Experiment
-
-results = ud.initiate_results()
-
-nextValue, self.results = ud.append_result(results, responses[0], down, up, stepSize, initalValue)
-
-for resp in responses[1:]:
-    nextValue, results = ud.append_result(results, resp, down, up, stepSize, nextValue)
-
-
-#
-# Process results
-
-print "Value estimate = " + str(ud.estimate_reversals(self.results, num=2))
-
-ud.plot_results(self.results)
-plt.savefig(‘test.png’, bbox_inches=‘tight’)
+ud.plot_results(stim1.results)
+ud.plot_results(stim2.results)
 ```
 
+![Levitt Example](doc/images/Levitt-Fig4.png)
 ![Levitt Example](doc/images/Levitt-Fig5.png)
