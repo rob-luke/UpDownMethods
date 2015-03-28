@@ -149,12 +149,16 @@ def estimate_reversals(res, num=2):
         return None
 
     else:
-
         rev = reversals(res)
-        rev = rev['Value'].values
-        num = num * -1
-        rev = rev[num:]
-        return np.mean(rev)
+
+        if rev.empty:
+            return None
+
+        else:
+            rev = rev['Value'].values
+            num = num * -1
+            rev = rev[num:]
+            return np.mean(rev)
 
 
 def createDT():
