@@ -88,12 +88,9 @@ def process_results(res, down, up, stepSize):
 
 def midpoints(res):
 
-    if res.empty:
-        return None
+    runs = pd.DataFrame(columns=('Run', 'Midpoint', 'CentreTrial'))
 
-    else:
-
-        runs = pd.DataFrame(columns=('Run', 'Midpoint', 'CentreTrial'))
+    if not res.empty:
 
         i = 0
         for run in np.unique(np.round(res['Run'])):
@@ -107,17 +104,14 @@ def midpoints(res):
             runs.loc[i] = [int(run), np.mean(values), mid]
             i += 1
 
-        return runs
+    return runs
 
 
 def runs(res):
 
-    if res.empty:
-        return None
+    runs = pd.DataFrame(columns=('Run', 'Start', 'Finish'))
 
-    else:
-
-        runs = pd.DataFrame(columns=('Run', 'Start', 'Finish'))
+    if not res.empty:
 
         i = 0
         for run in np.unique(np.round(res['Run'])):
@@ -129,13 +123,14 @@ def runs(res):
             runs.loc[i] = [int(run), start, end]
             i += 1
 
-        return runs
+    return runs
 
 
 def reversals(res):
 
     if res.empty:
-        return None
+
+        return pd.DataFrame(columns=('Reversals', 'Value', 'Trial'))
 
     else:
 

@@ -13,19 +13,19 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_calculateMidpoints(self):
         mids = ud.midpoints(self.results)
-        self.assertIsNone(mids)
+        self.assertIs(len(mids), 0)
+
+    def test_runs(self):
+        runs = ud.runs(self.results)
+        self.assertIs(len(runs), 0)
 
     def test_reversals(self):
         revs = ud.reversals(self.results)
-        self.assertIsNone(revs)
+        self.assertIs(len(revs), 0)
 
     def test_estimate_reversals(self):
         est = ud.estimate_reversals(self.results)
         self.assertIsNone(est)
-
-    def test_runs(self):
-        runs = ud.runs(self.results)
-        self.assertIsNone(runs)
 
 
 if __name__ == '__main__':
