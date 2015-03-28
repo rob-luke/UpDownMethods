@@ -33,10 +33,10 @@ class TestSequenceFunctions(unittest.TestCase):
             nextValue, self.results = ud.append_result(self.results, resp,
                                                        down, up, stepSize,
                                                        nextValue)
-            tmp = ud.midpoints(self.results)
-            tmp = ud.reversals(self.results)
-            tmp = ud.estimate_reversals(self.results)
-            tmp = ud.runs(self.results)
+            ud.midpoints(self.results)
+            ud.reversals(self.results)
+            ud.estimate_reversals(self.results)
+            ud.runs(self.results)
 
     def test_initiateResults(self):
         self.results = ud.initiate_procedure()
