@@ -16,11 +16,13 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
 
     # Plot correct responses
     corr = results[results['Responses'] == True]
-    plt.scatter(corr.index+1, corr.Value, s=50, marker='+', c='k')
+    if len(corr) > 0:
+        plt.scatter(corr.index+1, corr.Value, s=50, marker='+', c='k')
 
     # Plot incorrect responses
     incorr = results[results['Responses'] == False]
-    plt.scatter(incorr.index+1, incorr.Value, s=50, marker='_', c='k')
+    if len(incorr) > 0:
+        plt.scatter(incorr.index+1, incorr.Value, s=50, marker='_', c='k')
 
     # Indicate reversals
     # reversal = results[results['Reversal'] == True]
@@ -45,7 +47,8 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
             plt.scatter(mids['CentreTrial'].values[i],
                         mids['Midpoint'].values[i], c='r')
 
-    plt.xlim(-0.5, max(results.index) + 2.5)
+    if len(results) > 0:
+        plt.xlim(-0.5, max(results.index) + 2.5)
     plt.ylabel('Stimulus Value', fontsize=14)
     plt.xlabel('Trial Number', fontsize=14)
 
