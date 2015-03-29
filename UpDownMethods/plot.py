@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import UpDownMethods as ud
 
 
@@ -30,16 +29,23 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
     # edgecolors='k', s=200)
 
     # Track the runs
-    runY = min(results.Value)-1
-    for run in np.unique(np.round(results['Run']))[:-1]:
+    runs = ud.runs(results)
+    for i in range(len(runs)):
 
-        run_n = results[abs(results['Run'] - run) <= 0.5]
-        start = min(run_n["Trial"])
-        end = max(run_n["Trial"])
+        r = runs.iloc[[i]]
+
+        start = r["Start"]
+        end = r["Finish"]
         mid = start + (end-start)/2
 
+        runY = min(results.Value)-1
+
         plt.errorbar(mid, runY, xerr=(end-start)/2, c='k')
-        plt.annotate(str(int(run)), xy=(mid, runY-0.5), xytext=(mid, runY-0.5))
+        plt.annotate(str(int(i+1)), xy=(mid, runY-0.5), xytext=(mid, runY-0.5))
+
+    if estimate is not False:
+        est = ud.estimate_reversals(results, num=estimate)
+        plt.axhline(y=est, ls='--')
 
     if midpoints:
         mids = ud.midpoints(results)
