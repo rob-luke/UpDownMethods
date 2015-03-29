@@ -3,9 +3,14 @@ import numpy as np
 import UpDownMethods as ud
 
 
-def plot_results(results, midpoints=False):
+def plot_results(results, midpoints=False, figure=None, estimate=False,
+                 reversals=False):
 
-    figure = plt.figure()
+    if figure is None:
+        figure = plt.figure()
+
+    figure.clf()
+
     figure.add_subplot(111)
     plt.hold(True)
 
