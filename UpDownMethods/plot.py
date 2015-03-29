@@ -24,9 +24,11 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
         plt.scatter(incorr.index+1, incorr.Value, s=50, marker='_', c='k')
 
     # Indicate reversals
-    # reversal = results[results['Reversal'] == True]
-    # plt.scatter(reversal.index+1, reversal.Value, facecolors='none',
-    # edgecolors='k', s=200)
+    if reversals:
+        reversal = results[results['Reversal'] == True]
+        if len(reversal) > 0:
+            plt.scatter(reversal.index+1, reversal.Value, facecolors='none',
+                        edgecolors='k', s=200)
 
     # Track the runs
     runs = ud.runs(results)
