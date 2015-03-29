@@ -33,9 +33,7 @@ class UpDownMethod(object):
                    (self.nextValue < self.minValue):
 
                     self.nextValue = None
+            else:
+                self.nextValue = None
 
-                return self.nextValue
-
-        else:
-
-            return None
+        return self.nextValue
