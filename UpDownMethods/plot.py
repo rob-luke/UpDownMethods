@@ -3,7 +3,7 @@ import UpDownMethods as ud
 
 
 def plot_results(results, midpoints=False, figure=None, estimate=False,
-                 reversals=False):
+                 reversals=False, runs=True):
 
     if figure is None:
         figure = plt.figure()
@@ -31,19 +31,20 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
                         edgecolors='k', s=200)
 
     # Track the runs
-    runs = ud.runs(results)
-    for i in range(len(runs)):
+    if runs is not False:
+        runs = ud.runs(results)
+        for i in range(len(runs)):
 
-        r = runs.iloc[[i]]
+            r = runs.iloc[[i]]
 
-        start = r["Start"]
-        end = r["Finish"]
-        mid = start + (end-start)/2
+            start = r["Start"]
+            end = r["Finish"]
+            mid = start + (end-start)/2
 
-        runY = min(results.Value)-1
+            runY = min(results.Value)-1
 
-        plt.errorbar(mid, runY, xerr=(end-start)/2, c='k')
-        plt.annotate(str(int(i+1)), xy=(mid, runY-0.5), xytext=(mid, runY-0.5))
+            plt.errorbar(mid, runY, xerr=(end-start)/2, c='k')
+            plt.annotate(str(int(i+1)), xy=(mid, runY-0.5), xytext=(mid, runY-0.5))
 
     if estimate is not False:
         est = ud.estimate_reversals(results, num=estimate)
