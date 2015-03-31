@@ -29,6 +29,11 @@ def process_results(res, down, up, stepSize):
     cntD = 0            # How many correct received in a row
     direction = 0       # Used to track the direction of staircase
 
+    if type(stepSize) is list:
+        sSize = stepSize[0]
+    else:
+        sSize = stepSize
+
     for t in res.index:
 
         if t == len(res)-1:                         # If most recent response
@@ -60,8 +65,15 @@ def process_results(res, down, up, stepSize):
                                 n += 1
 
                         run += 1
+
+                        if type(stepSize) is list:
+                            if run < len(stepSize):
+                                sSize = stepSize[run-1]
+                            else:
+                                sSize = stepSize[-1]
+
                     direction = -1
-                nextValue = res.loc[t, 'Value'] + direction * stepSize
+                nextValue = res.loc[t, 'Value'] + direction * sSize
 
         else:                           # Incorrect response given
             cntU += 1
@@ -80,8 +92,15 @@ def process_results(res, down, up, stepSize):
                                 n += 1
 
                         run += 1
+
+                        if type(stepSize) is list:
+                            if run < len(stepSize):
+                                sSize = stepSize[run-1]
+                            else:
+                                sSize = stepSize[-1]
+
                     direction = 1
-                nextValue = res.loc[t, 'Value'] + direction * stepSize
+                nextValue = res.loc[t, 'Value'] + direction * sSize
 
     return nextValue, res
 
@@ -162,5 +181,6 @@ def estimate_reversals(res, num=2):
 
 
 def createDT(sep1="-", sep2=":"):
-    datestring = '%y' + sep1 + '%m' + sep1 + '%dT' + sep2 + '%H' + sep2 + '%M' + sep2 + '%S'
+    datestring = '%y' + sep1 + '%m' + sep1 + '%dT' \
+            + sep2 + '%H' + sep2 + '%M' + sep2 + '%S'
     return dt.datetime.strftime(dt.datetime.now(),  datestring)
