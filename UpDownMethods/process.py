@@ -151,7 +151,7 @@ def estimate_reversals(res, num=2):
     else:
         rev = reversals(res)
 
-        if rev.empty:
+        if len(rev) < num:
             return None
 
         else:
@@ -161,5 +161,6 @@ def estimate_reversals(res, num=2):
             return np.mean(rev)
 
 
-def createDT():
-    return dt.datetime.strftime(dt.datetime.now(),  '%y-%m-%dT%H:%M:%S')
+def createDT(sep1="-", sep2=":"):
+    datestring = '%y' + sep1 + '%m' + sep1 + '%dT' + sep2 + '%H' + sep2 + '%M' + sep2 + '%S'
+    return dt.datetime.strftime(dt.datetime.now(),  datestring)
