@@ -25,9 +25,8 @@ class UpDownMethod(object):
                     (len(self.results) < self.maxTrials):
 
                 self.nextValue, self.results = \
-                        ud.append_result(self.results, resp, self.down,
-                                         self.up, self.stepSize,
-                                         self.nextValue)
+                    ud.append_result(self.results, resp, self.down,
+                                     self.up, self.stepSize, self.nextValue)
 
                 if (self.nextValue > self.maxValue) | \
                    (self.nextValue < self.minValue):
