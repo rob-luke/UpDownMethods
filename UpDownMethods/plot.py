@@ -48,7 +48,9 @@ def plot_results(results, midpoints=False, figure=None, estimate=False,
 
     if estimate is not False:
         est = ud.estimate_reversals(results, num=estimate)
-        plt.axhline(y=est, ls='--')
+        if est is not None:
+            plt.axhline(y=est, ls='--')
+            plt.text(0, est+0.05, "Estimate = " + str(est), fontsize=12)
 
     if midpoints:
         mids = ud.midpoints(results)
